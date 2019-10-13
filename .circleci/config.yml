@@ -1,0 +1,51 @@
+version: 2.0
+references:
+
+  build_image: &build_image
+    run:
+      name: Build Docker Image
+      command: |
+        echo $IMAGE && echo $PYTHON
+        docker build -t $IMAGE:py${PYTHON/./} -f Dockerfile --build-arg PYTHON_VERSION=$PYTHON .
+
+  test_image: &test_image
+    run:
+      name: Sample image run
+      command: |
+        docker image ls
+        docker run -i -t $IMAGE:py${PYTHON/./} python -c "import sys; print(sys.version)"
+
+  publish_image: &publish_image
+    run:
+      name: Publish Image to Docker Hub
+      command: |
+        # TODO: push only if the DOCKERHUB cretential are given
+        echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+        docker push $IMAGE:py${PYTHON/./}
+
+jobs:
+  Py3:
+    machine: true
+    environment:
+    - IMAGE: "ubuntu"
+    - PYTHON: "3.6"
+    steps: &steps
+    - checkout
+    - *build_image
+    - *test_image
+    # todo: allow this push
+    # - *publish_image
+
+  Py2:
+    machine: true
+    environment:
+      - IMAGE: "ubuntu"
+      - PYTHON: "2.7"
+    steps: *steps
+
+workflows:
+  version: 2
+  build:
+    jobs:
+    - Py3
+    - Py2
