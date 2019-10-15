@@ -1,3 +1,5 @@
+# https://support.circleci.com/hc/en-us/articles/360006735753-Validating-your-CircleCI-Configuration
+
 version: 2.0
 references:
 
@@ -19,9 +21,16 @@ references:
     run:
       name: Publish Image to Docker Hub
       command: |
-        # TODO: push only if the DOCKERHUB cretential are given
-        echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-        docker push $IMAGE:py${PYTHON/./}
+        # push only if the DOCKERHUB credentials are given
+        # also limit pushes only from master branch - like "$CIRCLE_BRANCH" != "devel"
+        # TODO: https://discuss.circleci.com/t/v2-branch-conditional-run-commands/12555
+        if [[ "$DOCKERHUB_USERNAME" != "" && "$CIRCLE_BRANCH" == "master" ]]; then
+          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          # docker tag local-image:tagname user-name/new-repo:tagname
+          docker tag $IMAGE:py${PYTHON/./} $DOCKERHUB_USERNAME/docker_sample:py${PYTHON/./}
+          # docker push user-name/new-repo:tagname
+          docker push $DOCKERHUB_USERNAME/docker_sample
+        fi
 
 jobs:
   Py3:
@@ -33,8 +42,7 @@ jobs:
     - checkout
     - *build_image
     - *test_image
-    # todo: allow this push
-    # - *publish_image
+    - *publish_image
 
   Py2:
     machine: true

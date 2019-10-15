@@ -4,13 +4,17 @@
 
 This Docker image a i basic image with accent on automatic pushing to Docker Hub.
 
-1. build Docker image in a CI/CD
-2. test the Image in CI/CD
-3. push the Image to Docker Hub
+1. build Docker image in a CI/CD _(for particular version)_
+2. test the Image in CI/CD _(for particular version)_
+3. push the Image to Docker Hub _**(from master only and if credentials are given)**_
+
+**Note:** The credentials (`DOCKERHUB_USERNAME` and `DOCKERHUB_PASS`) has to be set in CircleCI [environment variables](https://circleci.com/docs/2.0/env-vars/).
+
+The reason is that DockerHub builds are using weak machines and the build time is very limited compare to CircleCI where you can use up to 5 hours.
 
 ---
 
-## Building locally
+### Building locally
 
 You can build it on your own, note it takes lots of time, be prepared.
 ```bash
@@ -18,7 +22,7 @@ git clone <git-repository>
 cd docker_sample
 docker image build -t ubuntu:py36 -f Dockerfile --build-arg PYTHON_VERSION=3.6 .
 ```
-To build other versions, select different Dockerfile.
+To run build image use following.
 ```bash
 docker image list
 docker run --rm -it ubuntu:py36 bash
