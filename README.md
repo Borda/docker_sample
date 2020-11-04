@@ -1,20 +1,35 @@
 # Sample Docker Image
 
+![Publish Docker Image](https://github.com/Borda/docker_sample/workflows/Publish%20Docker%20Image/badge.svg?event=push)
 [![CircleCI](https://circleci.com/gh/Borda/docker_sample.svg?style=svg)](https://circleci.com/gh/Borda/docker_sample)
+[![Docker Pulls](https://img.shields.io/docker/pulls/borda/docker_sample)](https://hub.docker.com/r/borda/docker_sample)
 
-This Docker image a i basic image with accent on automatic pushing to Docker Hub.
+## Building with CI/CD
+
+This Docker image a basic image with accent on automatic pushing to Docker Hub.
 
 1. build Docker image in a CI/CD _(for particular version)_
 2. test the Image in CI/CD _(for particular version)_
 3. push the Image to Docker Hub _**(from master only and if credentials are given)**_
 
-**Note:** The credentials (`DOCKERHUB_USERNAME` and `DOCKERHUB_PASS`) has to be set in CircleCI [environment variables](https://circleci.com/docs/2.0/env-vars/).
+The reason is that DockerHub builds are using weak machines and the build time is very limited compare to GH Actions / CircleCI where you can use up to 5 hours.
 
-The reason is that DockerHub builds are using weak machines and the build time is very limited compare to CircleCI where you can use up to 5 hours.
+
+### Using Github Actions
+
+Advantage of this build is usage of layer caching with sync with Docker Hub, so you build only the changed Docker layers...
+
+The credentials (`DOCKERHUB_USERNAME` and `DOCKER_PASSWORD`) has to be set in [Github setting - secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets).
+
+###  Using CircleCI
+
+This contains the very same building workflow as local build...
+
+The credentials (`DOCKERHUB_USERNAME` and `DOCKERHUB_PASS`) has to be set in CircleCI [environment variables](https://circleci.com/docs/2.0/env-vars/).
 
 ---
 
-### Building locally
+## Building locally
 
 You can build it on your own, note it takes lots of time, be prepared.
 ```bash
