@@ -1,8 +1,7 @@
 # Sample Docker Image
 
 ![Publish Docker Image](https://github.com/Borda/docker_sample/workflows/Publish%20Docker%20Image/badge.svg?event=push)
-[![CircleCI](https://circleci.com/gh/Borda/docker_sample.svg?style=svg)](https://circleci.com/gh/Borda/docker_sample)
-[![Docker Pulls](https://img.shields.io/docker/pulls/borda/docker_sample)](https://hub.docker.com/r/borda/docker_sample)
+[![Docker Pulls](https://img.shields.io/docker/pulls/borda/docker_sample)](https://hub.docker.com/r/borda/docker_sample)[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Borda/docker_sample/master.svg)](https://results.pre-commit.ci/latest/github/Borda/docker_sample/master)
 
 ## Building with CI/CD
 
@@ -22,9 +21,7 @@ The credentials (`DOCKERHUB_USERNAME` and `DOCKER_PASSWORD`) has to be set in [G
 
 ### Using CircleCI
 
-This contains the very same building workflow as local build...
-
-The credentials (`DOCKERHUB_USERNAME` and `DOCKERHUB_PASS`) has to be set in CircleCI [environment variables](https://circleci.com/docs/2.0/env-vars/).
+It was dropped for some minor compatibility issues... to check it out pls see Git history.
 
 ______________________________________________________________________
 
