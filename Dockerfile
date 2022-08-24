@@ -17,8 +17,8 @@ RUN apt-get update -qq && \
     apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends \
         python${PYTHON_VERSION} \
+        $( [ ${PYTHON_VERSION%%.*} -ge 3 ] && echo "python${PYTHON_VERSION}-distutils" ) \
         python${PYTHON_VERSION}-dev \
-        $( [ ${PYTHON_VERSION%%.*} -ge 3 ] && echo "python${PYTHON_VERSION%%.*}-distutils" ) \
         wget \
     && \
 
