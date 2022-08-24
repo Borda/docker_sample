@@ -2,7 +2,7 @@
 
 FROM ubuntu:20.04
 
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.8
 
 LABEL maintainer="jiri.borovec@fel.cvut.cz"
 
@@ -38,5 +38,6 @@ RUN apt-get update -qq && \
 RUN \
     # Show what we have
     python --version && \
+    pip --version && \
     pip list && \
-    python -c "import sys; assert sys.version[:3] == '$PYTHON_VERSION', sys.version"
+    python -c "import sys; ver = sys.version.split(' ')[0] ; assert ver.split('.')[:2] == '$PYTHON_VERSION'.split('.')[:2], sys.version"
