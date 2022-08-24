@@ -39,6 +39,6 @@ jobs:
           cache-from: type=registry,ref=borda/docker_sample:py${{ matrix.python-version }}
           cache-to: type=inline
           file: Dockerfile
-          push: env.PUSH_TO_HUB == 'true'
+          push: ${{ env.PUSH_TO_HUB }}
           tags: borda/docker_sample:py${{ matrix.python-version }}
         timeout-minutes: 25
