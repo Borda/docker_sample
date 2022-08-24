@@ -1,7 +1,8 @@
 # Sample Docker Image
 
 ![Publish Docker Image](https://github.com/Borda/docker_sample/workflows/Publish%20Docker%20Image/badge.svg?event=push)
-[![Docker Pulls](https://img.shields.io/docker/pulls/borda/docker_sample)](https://hub.docker.com/r/borda/docker_sample)[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Borda/docker_sample/master.svg)](https://results.pre-commit.ci/latest/github/Borda/docker_sample/master)
+[![Docker Pulls](https://img.shields.io/docker/pulls/borda/docker_sample)](https://hub.docker.com/r/borda/docker_sample)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Borda/docker_sample/master.svg)](https://results.pre-commit.ci/latest/github/Borda/docker_sample/master)
 
 ## Building with CI/CD
 
