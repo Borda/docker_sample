@@ -27,4 +27,4 @@ assignees: ''
 
 #### What's your environment?
 
-- Version \[e.g. 0.2.1\]
+- Version [e.g. 0.2.1]
