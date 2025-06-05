@@ -11,11 +11,16 @@ SHELL ["/bin/bash", "-c"]
 # for installing tzdata see: https://stackoverflow.com/a/58264927/4521646
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -qq && \
-    apt-get install -y --no-install-recommends software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update --fix-missing && \
+RUN 
+    apt-get update -qq --fix-missing && \
     apt-get install -y --no-install-recommends \
+        software-properties-common \
+        dirmngr \
+        gnupg && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt-add-repository universe && \
+    apt-get -y update -qq --fix-missing && \
+    apt-get -y install --no-install-recommends \
         python${PYTHON_VERSION} \
         python${PYTHON_VERSION}-distutils \
         python${PYTHON_VERSION}-dev \
