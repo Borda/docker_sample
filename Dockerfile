@@ -11,7 +11,7 @@ SHELL ["/bin/bash", "-c"]
 # for installing tzdata see: https://stackoverflow.com/a/58264927/4521646
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN
+RUN \
     apt-get update -qq --fix-missing && \
     apt-get install -y --no-install-recommends \
         software-properties-common \
