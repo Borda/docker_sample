@@ -1,10 +1,10 @@
 # https://www.learnopencv.com/install-opencv3-on-ubuntu/
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-ARG PYTHON_VERSION=3.8
+ARG PYTHON_VERSION=3.9
 
-LABEL maintainer="jiri.borovec@fel.cvut.cz"
+LABEL maintainer="jborovec+github@gmail.com"
 
 SHELL ["/bin/bash", "-c"]
 
